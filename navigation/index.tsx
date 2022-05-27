@@ -64,6 +64,11 @@ function BottomTabNavigator() {
       <BottomTab.Screen
         name="Cars"
         component={CarsScreen}
+        options={
+          {
+            headerShown: false
+          }
+        }
       />
     </BottomTab.Navigator>
   );
