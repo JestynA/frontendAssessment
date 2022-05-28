@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
         
         height: windowHeight / 3,
         width: '100%',
-        marginBottom: 20,
+        marginTop: 30,
         
         shadowColor: 'black',
         shadowRadius: 5,

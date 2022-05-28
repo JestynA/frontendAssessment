@@ -18,16 +18,51 @@ export default function CarsScreen({ navigation }: RootTabScreenProps<'TabOne'>)
 
   // only grab available cars from the API
   const [availableCars , setAvailable] = useState<any>([]);
+  const [availableYears, setYears] = useState<Number[]>([]);
+  const [availableMakes, setMakes] = useState<String[]>([]);
+  const [availableColors, setColors] = useState<string[]>([])
+  const [filters, setFilters] = useState<any>({});
 
   const getCarData = async () => {
     const response = await fetch('https://myfakeapi.com/api/cars/');
     const data = await response.json();
     const updateData : any= [];
+    const updateYears : any = {};
+    const updateMakes : any = {};
+    const updateColors : any = {};
+
     data.cars.forEach( async ({car, car_model, id, car_model_year, car_vin, car_color, price, availability} : car) => {
+      
+      // only adding available cars??
       if(availability){
 
+        /* 
+        Makes and models stored in an object
+        {Honda: [civic : {red,black}, crv, etc...]}
+        */
 
-        //const picResponse = await fetch('https://picsum.photos/200/300');
+        // store years of cars in an object
+        if(!updateYears[car_model_year.toString()]){
+          updateYears[car_model_year.toString()] = true;
+        }
+        
+
+        
+        if(!updateMakes[car]){
+            updateMakes[car] = [];
+        }
+
+        // adding to collection of makes/models database
+        if(!updateMakes[car].includes(car_model)){
+          updateMakes[car].push(car_model)
+        }
+
+        // storing available colors for each car model
+        if(!updateColors[car_model]){
+          updateColors[car_model] = [car_color]
+        } else {
+          updateColors[car_model].push(car_color)
+        }
         
     
         updateData.push({
@@ -42,24 +77,15 @@ export default function CarsScreen({ navigation }: RootTabScreenProps<'TabOne'>)
           key : parseInt(id),
           
         })
-        // updateData.push(
-        //   <CarCard 
-        //   car = {car}
-        //   car_model = {car_model}
-        //   id = {id}
-        //   car_model_year = {car_model_year}
-        //   car_vin = {car_vin}
-        //   car_color = {car_color}
-        //   price = {price}
-        //   availability = {availability}
-        //   key = {parseInt(id)}
-        //   pic = {'https://picsum.photos/600/200'}
-        //   />
-        // )
       }
     })
 
-    setAvailable(updateData)
+    setYears(updateYears);
+    setMakes(updateMakes);
+    setAvailable(updateData);
+    setColors(updateColors);
+    
+
     console.log('updated components')
   }
 
@@ -74,9 +100,16 @@ export default function CarsScreen({ navigation }: RootTabScreenProps<'TabOne'>)
 
   return (
     <View style={styles.container}>
-      <SearchBar setSearch={setSearch}/>
+      <SearchBar 
+      setSearch={setSearch} 
+      setFilters={setFilters}
+      availableColors = {availableColors}
+      availableYears = {availableYears}
+      availableMakes = {availableMakes}
+      />
+
+      { !Object.keys(filters).length ? (
      <FlatList
-      style = {styles.carContainer}
       data = {availableCars}
       renderItem = {({item}) => 
         <CarCard
@@ -92,6 +125,13 @@ export default function CarsScreen({ navigation }: RootTabScreenProps<'TabOne'>)
         />
         }
      />
+      ) : (
+        <Text style = {{color: 'white'}}>Filtered by: {Object.values(filters)}</Text>
+        // <FlatList
+
+        // />
+      )}
+
     </View>
   );
 }
