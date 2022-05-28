@@ -8,6 +8,7 @@ export default function FiltersContainer( ){
     const test = ['1','2','3']
     return (
         <View style={styles.container}>
+
             <View style = {styles.selectionContainer}>
                 <Text>Model: </Text>
                 <SelectDropdown
@@ -47,16 +48,22 @@ export default function FiltersContainer( ){
 
 const styles = StyleSheet.create({
     container: {
-        
+        height: 100,
+        flexDirection: 'row',
+        gap: 10,
+        borderColor: 'black',
+        backgroundColor: '#000000',
+        zIndex: 9999
     },
     selectionContainer: {
-
+        backgrounColor: '#000000',
+        width: '20%'
     },
     
     dropdown: {
         height: 30,
         borderRadius: 15,
-        width: 150,
+        width: '100%',
     
         text: {
             color: 'gray'
