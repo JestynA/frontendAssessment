@@ -40,7 +40,7 @@ export default function SearchBar({ setSearch } : props) {
 
 const styles = StyleSheet.create({
     container : {
-        height: '60%',
+       // height: '15%',
         width: '100%',
     },
     searchBar : {
@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
         paddingLeft: 20,
         paddingRight: 20,
         width: '100%',
-        height: '13%',
+        height: 60,
         flexDirection: 'row',
         justifyContent: 'space-around',
         alignItems: 'center',

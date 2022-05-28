@@ -33,3 +33,15 @@ export type RootTabScreenProps<Screen extends keyof RootTabParamList> = Composit
   BottomTabScreenProps<RootTabParamList, Screen>,
   NativeStackScreenProps<RootStackParamList>
 >;
+
+export type car = {
+  id : string,
+  car : String,
+  car_color : String,
+  car_model: String,
+  car_model_year: Number,
+  car_vin : String,
+  price : string,
+  availability: Boolean
+  key: Number
+}
