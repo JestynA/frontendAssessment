@@ -10,7 +10,7 @@ import SearchBar from '../components/SearchBar';
 import CarCard from '../components/CarCard'
 
 
-type carData = car[]
+const backgroundColor = '#13161c'
 
 export default function CarsScreen({ navigation }: RootTabScreenProps<'TabOne'>) {
 
@@ -75,41 +75,23 @@ export default function CarsScreen({ navigation }: RootTabScreenProps<'TabOne'>)
   return (
     <View style={styles.container}>
       <SearchBar setSearch={setSearch}/>
-      <Text>{availableCars.length}</Text>
      <FlatList
+      style = {styles.carContainer}
       data = {availableCars}
       renderItem = {({item}) => 
-      <CarCard
-        car = {item.car}
-        car_model = {item.car_model}
-        id = {item.id}
-        car_model_year = {item.car_model_year}
-        car_vin = {item.car_vin}
-        car_color = {item.car_color}
-        price = {item.price}
-        availability = {item.availability}
-      key = {parseInt(item.id)}
- 
-      />
-    }
-      // renderItem = {({car, car_model, id, car_model_year, car_vin, car_color, price, availability} : car) => {
-      //   <CarCard
-      //   car = {car}
-      //   car_model = {car_model}
-      //   id = {id}
-      //   car_model_year = {car_model_year}
-      //   car_vin = {car_vin}
-      //   car_color = {car_color}
-      //   price = {price}
-      //   availability = {availability}
-      //   key = {parseInt(id)}
-      //   pic = {''}
-      //   />
-      // }}
+        <CarCard
+          car = {item.car}
+          car_model = {item.car_model}
+          id = {item.id}
+          car_model_year = {item.car_model_year}
+          car_vin = {item.car_vin}
+          car_color = {item.car_color}
+          price = {item.price}
+          availability = {item.availability}
+          key = {parseInt(item.id)}
+        />
+        }
      />
-        
-      
-        
     </View>
   );
 }
@@ -119,9 +101,6 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
 
-    
+    backgroundColor: backgroundColor
   },
-  carContainer: {
-
-  }
 });
