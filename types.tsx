@@ -36,11 +36,11 @@ export type RootTabScreenProps<Screen extends keyof RootTabParamList> = Composit
 
 export type car = {
   id : string,
-  car : String,
-  car_color : String,
-  car_model: String,
-  car_model_year: Number,
-  car_vin : String,
+  car : string,
+  car_color : string,
+  car_model: string,
+  car_model_year: number,
+  car_vin : string,
   price : string,
   availability: Boolean
   key: Number

@@ -7,12 +7,24 @@ import FiltersContainer from '../components/FiltersContainer'
 
 type props = {
     // can't find the type for this?? change ASAP
-    setSearch : any
+    setSearch : any,
+    setFilters : any,
+    availableYears : any,
+    availableMakes : any
+    availableColors: any
+    allColors : any
 }
 
-export default function SearchBar({ setSearch } : props) {
+const searchBarColor = '#262b36';
+const secondaryColor = '#95c93d';
+
+export default function SearchBar({ setSearch , setFilters, availableYears, availableMakes, availableColors} : props) {
 
     const [showFilters, setShowFilters] = useState(false);
+
+
+
+
 
     return(
         <View style = {styles.container}>
@@ -25,14 +37,19 @@ export default function SearchBar({ setSearch } : props) {
                     placeholder = 'Car model'
                 />
                 <Button
-                    
+                    color = {secondaryColor}
                     title='Filter'
                     onPress={() => {setShowFilters(!showFilters)}}
                 />
             </View>
 
             { showFilters ? (
-                <FiltersContainer/>
+                <FiltersContainer
+                setFilters={setFilters}
+                availableYears = {availableYears}
+                availableMakes = {availableMakes}
+                availableColors = {availableColors}
+                />
             ) : null}
         </View>
     )
@@ -42,19 +59,21 @@ const styles = StyleSheet.create({
     container : {
        // height: '15%',
         width: '100%',
+       
     },
     searchBar : {
         marginTop: 40,
         
         paddingLeft: 20,
         paddingRight: 20,
+        
         width: '100%',
         height: 60,
         flexDirection: 'row',
         justifyContent: 'space-around',
         alignItems: 'center',
         borderColor : '#000000',
-        backgroundColor: '#000000'
+        backgroundColor: searchBarColor
     },
     input : {
         paddingLeft: 10,
