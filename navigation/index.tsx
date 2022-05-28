@@ -18,6 +18,8 @@ import CarsScreen from '../screens/CarsScreen';
 import { RootStackParamList, RootTabParamList, RootTabScreenProps } from '../types';
 import LinkingConfiguration from './LinkingConfiguration';
 
+import { MaterialCommunityIcons } from '@expo/vector-icons';
+
 export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeName }) {
   return (
     <NavigationContainer
@@ -66,7 +68,8 @@ function BottomTabNavigator() {
         component={CarsScreen}
         options={
           {
-            headerShown: false
+            headerShown: false,
+            tabBarIcon: ({color, size}) => { return <MaterialCommunityIcons name='car' size={size} color ={color}/>}
           }
         }
       />

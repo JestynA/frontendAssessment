@@ -4,6 +4,7 @@ import { useState , useEffect} from 'react';
 import { Text, View } from '../components/Themed';
 import { RootTabScreenProps , car} from '../types';
 
+import { FaBeer } from 'react-icons/fa'
 
 
 import SearchBar from '../components/SearchBar';
@@ -107,9 +108,11 @@ export default function CarsScreen({ navigation }: RootTabScreenProps<'TabOne'>)
       availableYears = {availableYears}
       availableMakes = {availableMakes}
       />
+   
 
       { !Object.keys(filters).length ? (
      <FlatList
+     style = {{width: '100%', zIndex: 9998}}
       data = {availableCars}
       renderItem = {({item}) => 
         <CarCard

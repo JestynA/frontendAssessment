@@ -35,6 +35,8 @@ export default function SearchBar({ setSearch , setFilters, availableYears, avai
                     style = {styles.input}
                     onChangeText = {(text) => setSearch(text)}
                     placeholder = 'Car model'
+                    placeholderTextColor= 'black'
+                    
                 />
                 <Button
                     color = {secondaryColor}
@@ -57,16 +59,28 @@ export default function SearchBar({ setSearch , setFilters, availableYears, avai
 
 const styles = StyleSheet.create({
     container : {
-       // height: '15%',
+        zIndex: 9999,
         width: '100%',
+        backgroundColor: searchBarColor,
+        shadowColor: 'black',
+        shadowOpacity: 1,
+        shadowRadius: 10
        
     },
+
     searchBar : {
+        
         marginTop: 40,
         
         paddingLeft: 20,
         paddingRight: 20,
         
+        shadowColor: 'black',
+        shadowOpacity: .3,
+        shadowRadius: 20,
+        shadowOffset: {height: 40, width: 0},
+        
+
         width: '100%',
         height: 60,
         flexDirection: 'row',
@@ -81,6 +95,7 @@ const styles = StyleSheet.create({
         width: '70%',
         backgroundColor: '#D3D3D3',
         borderRadius : 30 / 2,
+        
     },
     filterButton: {
         backgroundColor: '#D3D3D3',

@@ -1,5 +1,6 @@
 import { View, Text} from  '../components/Themed';
 import { StyleSheet , Image , Dimensions} from 'react-native';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 import { car } from '../types'
 
@@ -11,9 +12,9 @@ const cardColor = '#262b36';
 
 export default function CarCard ({car, car_model, id, car_model_year, car_vin, car_color, price, availability}: car){
 
-
     
-  
+    
+    const num = Math.round(Math.random() * 100);
 
     return(
         <View style = {styles.container}>
@@ -28,11 +29,11 @@ export default function CarCard ({car, car_model, id, car_model_year, car_vin, c
             <View style = {styles.description}>
                 <View style = {{backgroundColor: cardColor}}>
                     <Text style = {styles.model}>{car_model}</Text>
-                    <Text style = {styles.make}>{car_model_year} {car}, {car_color}</Text> 
+                    <Text style = {styles.make}>{car_model_year} {car} <MaterialCommunityIcons name='star' color={secondaryColor} size={windowHeight/70}/> <Text style = {{color : 'gray'}}>({num})</Text></Text> 
                 </View>
 
                 <View style = {{backgroundColor: cardColor}}>
-                     <Text style = {styles.price}>${parseInt(price.slice(1))}/day</Text>
+                     <Text style = {styles.price}>${parseInt(price.slice(1))} <Text style = {{fontWeight: 'normal'}}>| day</Text></Text>
 
                 </View>
 
@@ -45,13 +46,16 @@ export default function CarCard ({car, car_model, id, car_model_year, car_vin, c
 
 const styles = StyleSheet.create({
     container: {
+        
+       alignSelf: 'center',
         backgroundColor: cardColor,
         borderColor: 'black',
         borderWidth: 1,
-        borderRadius: 10,
+        borderRadius: 5,
         
         height: windowHeight / 3,
-        width: '100%',
+        width: '90%',
+
         marginTop: 30,
         
         shadowColor: 'black',
@@ -61,33 +65,41 @@ const styles = StyleSheet.create({
 
     },
     image : {
-        borderTopLeftRadius: 10,
-        borderTopRightRadius: 10,
+        borderTopLeftRadius: 5,
+        borderTopRightRadius: 5,
+
         height: '70%',
-        width: windowWidth * .9
+        width: '100%'
     },
     description : {
         backgroundColor: cardColor,
 
-        borderBottomLeftRadius: 10,
-        borderBottomRightRadius: 10,
+      
+        borderColor: 'black',
+        borderTopWidth: 1,
+
+        borderBottomLeftRadius: 5,
+        borderBottomRightRadius: 5,
         height: '30%',
-        padding: 10,
+        paddingBottom: 20,
+        paddingLeft: 15,
+        paddingRight: 15,
         flexDirection: 'row',
         alignItems: 'flex-end',
         justifyContent: 'space-between'
     },
     make : {
         paddingBottom : '2%',
-        fontSize: '15%',
+        fontSize: windowHeight / 70,
         color: 'white',
         backgroundColor: cardColor
     },
     model : {
-        fontSize: '30%',
+        fontSize: windowHeight / 25,
         fontWeight: 'bold',
         color: 'white',
-        backgroundColor: cardColor
+        backgroundColor: cardColor,
+        marginBottom: 0,
     },
     price : {
         paddingBottom: '2%',
